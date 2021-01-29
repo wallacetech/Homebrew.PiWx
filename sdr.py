@@ -1,13 +1,20 @@
 import sys
 import os
+from subprocess import Popen, PIPE
 
-cmd = 'rtl_433 -M utc -F json'
+DEFAULT_COMMAND = "rtl_433 -M utc -F json"
 
-process = os.popen(cmd)
+
+print("Opening process")
+process = Popen(DEFAULT_COMMAND.split(' '),stdout=PIPE,stderr=PIPE)
+
 
 while True:
-    str = process.read()
-    print(str)
-    print("=======================")
+
+    line = process.stdout.readline()
+    print("Readline")
+    if not line:
+        break
+    print(line)
 
 process.close()
