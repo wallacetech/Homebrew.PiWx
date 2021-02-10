@@ -54,6 +54,7 @@ class ProcessManager(object):
                     time.sleep(.1)
             except KeyboardInterrupt:
                 self.stop_process()
+                raise KeyboardInterrupt()
 
     def is_running(self):
         return self._process.poll() is None
