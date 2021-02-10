@@ -38,11 +38,13 @@ def main():
 
     try:
         client = iothub_client_init()
-        manager = ProcessManager()
-        manager.start_process(DEFAULT_COMMAND)
+        #manager = ProcessManager()
+        #manager.start_process(DEFAULT_COMMAND)
+        manager = Rtl433Stub()
 
         while True:
-            lines = manager.get_stdout()
+            #lines = manager.get_stdout()
+            lines = manager.get_telemtry()
 
             for line in lines:
                 prevMsg = None
